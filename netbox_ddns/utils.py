@@ -11,6 +11,9 @@ def normalize_fqdn(dns_name: str) -> str:
 
 def get_soa(dns_name: str) -> str:
     parts = dns_name.rstrip('.').split('.')
+    if len(parts) == 1:
+        return dns_name.lower()
+
     for i in range(len(parts)):
         zone_name = normalize_fqdn('.'.join(parts[i:]))
 
